@@ -19,7 +19,7 @@
          } 
          client := &http.Client{Transport: transCfg} 
 
-         urls := [4]string{"https://vm00006926:7999","https://vm00006927:7999", "https://vm00006928:7999", "https://vm00006929:7999"} 
+         urls := [4]string{"https://host1:7999","https://host2:7999", "https://host3:7999", "https://host4:7999"} 
 
           for _,url := range urls { 
 
