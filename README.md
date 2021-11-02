@@ -1,6 +1,6 @@
 # golang
 
-## How to build go packages for multiple platforms
+### How to build go packages for multiple platforms
 
 ```go
 go tool dist list
