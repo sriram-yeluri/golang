@@ -1,5 +1,12 @@
 # golang
 
+### How to format go code 
+
+```go
+# format all files in a directory (including sub directories)
+go fmt ./...
+```
+
 ### How to build go packages for multiple platforms
 
 [go-docs-env-vars](https://golang.org/doc/install/source#environment)
