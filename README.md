@@ -1,5 +1,24 @@
 # golang
 
+### Set GOPATH
+
+```
+# for macOS
+# vi .zshrc
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=${PATH}:$GOBIN
+```
+
+### Install cobra-cli
+
+[cora-cli-readme](https://github.com/spf13/cobra-cli/blob/main/README.md)
+
+```
+go install github.com/spf13/cobra-cli@latest
+
+```
+
 ### How to format go code 
 
 ```go
