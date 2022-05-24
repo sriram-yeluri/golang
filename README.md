@@ -14,9 +14,8 @@ export PATH=${PATH}:$GOBIN
 
 [cora-cli-readme](https://github.com/spf13/cobra-cli/blob/main/README.md)
 
-```
+```go
 go install github.com/spf13/cobra-cli@latest
-
 ```
 
 ### How to format go code 
