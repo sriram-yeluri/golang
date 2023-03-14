@@ -9,7 +9,17 @@ import (
 	"time"
 )
 
-func Call_Example_Api() {
+func Simple_Api_Call(){
+	resp, err := http.Get("http://example.com/")
+	if err != nil{
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	body , _ := ioutil.ReadAll(resp.Body)
+	log.Print(string(body))
+}
+
+func Api_Call_With_Transport() {
 	tr := &http.Transport{
 		MaxIdleConns:       10,
 		IdleConnTimeout:    30 * time.Second,
@@ -67,7 +77,8 @@ func main() {
 	// 	fmt.Println(k, ":", v)
 	// }
 
-	// Call_Example_Api()
-	JSONPlaceholder()
+	Simple_Api_Call()
+	Api_Call_With_Transport()
+	// JSONPlaceholder()
 
 }
