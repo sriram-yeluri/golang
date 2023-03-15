@@ -7,15 +7,17 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/sriram-yeluri/golang/pkg/logger"
 )
 
-func Simple_Api_Call(){
+func Simple_Api_Call() {
 	resp, err := http.Get("http://example.com/")
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	body , _ := ioutil.ReadAll(resp.Body)
+	body, _ := ioutil.ReadAll(resp.Body)
 	log.Print(string(body))
 }
 
@@ -77,8 +79,13 @@ func main() {
 	// 	fmt.Println(k, ":", v)
 	// }
 
-	Simple_Api_Call()
-	Api_Call_With_Transport()
+	// Simple_Api_Call()
+	// Api_Call_With_Transport()
 	// JSONPlaceholder()
+
+	// How to use custom logger messages
+	logger.Info.Print("This is info log message")
+	logger.Warning.Print("This is a warning log message")
+	logger.Error.Print("This is error log message")
 
 }
