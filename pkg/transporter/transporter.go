@@ -1,19 +1,23 @@
 package transporter
 
 import (
-	"encoding/base64"
-	"io/ioutil"
+	"analyzer/pkg/conf"
+	"analyzer/pkg/logger"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
-func basicAuth(username, password string) string {
-	auth := username + ":" + password
-	return base64.StdEncoding.EncodeToString([]byte(auth))
-}
+func SendHttpRequest(httpMethod string, auth *conf.Auth, requestURL string) (*http.Response, string) {
+	
+	//validate the authentication credentials
+	if auth.UserName == "" || auth.Password == "" {
+		logger.Error.Print("Invalid Credentials")
+		os.Exit(1)
 
-func SendHttpRequest(username, password, url string) (*http.Response, string) {
+	}
 	// For control over proxies, TLS configuration, keep-alives,
 	// compression, and other settings, create a Transport:
 	tr := &http.Transport{
@@ -35,7 +39,7 @@ func SendHttpRequest(username, password, url string) (*http.Response, string) {
 
 	// set http request headers
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Basic "+basicAuth(username, password))
+	req.SetBasicAuth(auth.UserName, auth.Password)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -43,7 +47,7 @@ func SendHttpRequest(username, password, url string) (*http.Response, string) {
 	}
 
 	defer resp.Body.Close()
-	bodyText, err := ioutil.ReadAll(resp.Body)
+	bodyText, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
