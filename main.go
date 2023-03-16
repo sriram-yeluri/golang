@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
+	"analyzer/pkg/conf"
 	"github.com/sriram-yeluri/golang/pkg/logger"
 )
 
@@ -56,6 +56,12 @@ func JSONPlaceholder() {
 
 	fmt.Println(res)
 	fmt.Println(string(body))
+}
+
+var auth *conf.Auth
+
+func init() {
+	auth = conf.SetAuth()
 }
 
 func main() {
