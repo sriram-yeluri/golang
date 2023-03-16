@@ -32,7 +32,7 @@ func SendHttpRequest(httpMethod string, auth *conf.Auth, requestURL string) (*ht
 		Timeout:   30 * time.Second,
 	}
 	// Create http request
-	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequest(httpMethod, requestURL, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
